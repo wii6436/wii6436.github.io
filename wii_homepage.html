@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // 設定倒數計時的目標日期和時間（以毫秒為單位）
+        var targetDate = new Date().getTime() + 300000; // 5分鐘後的時間
+
+        // 更新倒數計時器的函數
+        function updateCountdown() {
+            var now = new Date().getTime();
+            var timeRemaining = targetDate - now;
+
+            var minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+
+            document.getElementById("countdown").innerHTML = minutes + "分" + seconds + "秒";
+
+            if (timeRemaining <= 0) {
+                document.getElementById("countdown").innerHTML = "時間到！";
+                clearInterval(interval);
+            }
+        }
+
+        // 每秒更新一次倒數計時器
+        var interval = setInterval(updateCountdown, 1000);
+    </script>
+</head>
+<body>
+    <h1>Welcome to my home</h1>
+    <h1>倒數計時器</h1>
+    <p>距離結束還有: <span id="countdown"></span></p>
+    
+</body>
+</html>
